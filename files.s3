@@ -1,3 +1,5 @@
 epoch.sh
 tadd.sh
 tdiff.sh
+wddiff.sh
+wdlist.sh

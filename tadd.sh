@@ -2,11 +2,11 @@
 #Author: Michael Ambrus (michael.ambrus@sonymobile.com)
 # 2012-03-21
 
-if [ -z $TDIFF_SH ]; then
+if [ -z $TADD_SH ]; then
 
-TDIFF_SH="tdiff.sh"
+TADD_SH="tadd.sh"
 
-function tdiff() {
+function tadd() {
 	local T0
 	local T1
 	local A="$1"
@@ -24,23 +24,23 @@ function tdiff() {
 		T1=$(epoch "$B")
 	fi
 
-	#echo "$T0,$T1" | awk -F"," '{printf("%f - %f = %f\n",$2,$1,$2-$1);}'
-	echo "$T0,$T1" | awk -F"," '{printf("%f\n",$2-$1);}'
+	#echo "$T0,$T1" | awk -F"," '{printf("%f + %f = %f\n",$1,$2,$2+$1);}'
+	echo "$T0,$T1" | awk -F"," '{printf("%f\n",$1+$2);}'
 }
 
 source s3.ebasename.sh
-if [ "$TDIFF_SH" == $( ebasename $0 ) ]; then
+if [ "$TADD_SH" == $( ebasename $0 ) ]; then
 	#Not sourced, do something with this.
 	source time.epoch.sh
 	set -e
 	set -u
 
 	if [ $# != 2 ]; then
-		echo "Syntax error [$TDIFF_SH]: Exactly two arguments expected" 1>&2
+		echo "Syntax error [$TADD_SH]: Exactly two arguments expected" 1>&2
 		exit 1
 	fi
 
-	tdiff "$@"
+	tadd "$@"
 	exit $?
 fi
 
