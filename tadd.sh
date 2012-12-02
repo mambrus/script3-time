@@ -11,7 +11,7 @@ function tadd() {
 	local T1
 	local A="$1"
 	local B="$2"
-	
+
 	if [ "X$(echo $A | egrep '^[0-9]+\.[0-9]+$')" == "X$A" ]; then
 		T0=$A
 	else
